@@ -1,0 +1,20 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@{
+    ViewData["Title"] = "RemoveFromChat";
+}
+@model List<IdentityUser>
+<h1>RemoveFromChat</h1>
+<hr />
+<h3>Users you can remove:</h3>
+<br />
+@foreach (var u in Model)
+{
+    <div>
+        <h4>@u.UserName</h4>
+        <form method="post" asp-controller="Admin" asp-action="RemoveFromChat">
+            <input type="hidden" name="name" value="@u.UserName" />
+            <button type="submit">Remove</button>
+        </form>
+    </div>
+}
+
