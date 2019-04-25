@@ -25,7 +25,7 @@ namespace ShopMvc.Controllers
         [Authorize]
         [CheckActionFilter]
         [Route("All")]
-        public IActionResult Index()
+        public ActionResult Index()
         {
             return View(_repository.GetAll());
         }
@@ -61,6 +61,7 @@ namespace ShopMvc.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
         [Route("[action]")]
+        [CheckActionFilter]
         public async Task<IActionResult> Create(Category category)
         {
             await _repository.Add(category);
@@ -88,6 +89,7 @@ namespace ShopMvc.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
         [Route("[action]")]
+        [CheckActionFilter]
         public async Task<IActionResult> Edit(int id, Category category)
         {
             if (id != category.Id || category == null)
@@ -124,6 +126,7 @@ namespace ShopMvc.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
         [Route("[action]")]
+        [CheckActionFilter]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var category = _repository.GetByIdAsync(id);

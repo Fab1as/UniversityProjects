@@ -65,7 +65,8 @@ namespace ShopMvc.Controllers
             }
             catch
             {
-                HttpContext.Response.Cookies.Append("Error: can't save in db.", DateTime.Now.ToString("dd/MM/yyyy hh-mm-ss"));
+                HttpContext.Response.Cookies.Append("Error: create operation not completed", DateTime.Now.ToString("dd/MM/yyyy hh-mm-ss"));
+                return StatusCode(500);
             }
             return RedirectToAction(nameof(Index));
         }
@@ -91,15 +92,20 @@ namespace ShopMvc.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, Liquid liquid)
         {
-            if (id != liquid.Id)
+            if (id != liquid.Id || liquid == null)
             {
                 return NotFound();
             }
-            if (liquid == null)
+
+            try
             {
-                StatusCode(500);               
+                await _repository.Edit(liquid);
             }
-            await _repository.Edit(liquid);
+            catch
+            {
+                HttpContext.Response.Cookies.Append("Error: edit operation not completed", DateTime.Now.ToString("dd/MM/yyyy hh-mm-ss"));
+                return StatusCode(500);
+            }
 
             return RedirectToAction(nameof(Index));
         }
@@ -129,7 +135,15 @@ namespace ShopMvc.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var liquid = _repository.GetById(id);
-            await _repository.Delete(liquid);
+            try
+            {
+                await _repository.Delete(liquid);
+            }
+            catch (Exception)
+            {
+                HttpContext.Response.Cookies.Append("Error: edit operation not completed", DateTime.Now.ToString("dd/MM/yyyy hh-mm-ss"));
+                return StatusCode(500);
+            }
             return RedirectToAction(nameof(Index));
         }
 

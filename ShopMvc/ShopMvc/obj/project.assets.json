@@ -13090,11 +13090,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Azatka\\source\\repos\\ShopMvc\\ShopMvc\\ShopMvc.csproj",
+      "projectUniqueName": "D:\\Projects\\VS\\UniversityProjects\\ShopMvc\\ShopMvc\\ShopMvc.csproj",
       "projectName": "ShopMvc",
-      "projectPath": "C:\\Users\\Azatka\\source\\repos\\ShopMvc\\ShopMvc\\ShopMvc.csproj",
+      "projectPath": "D:\\Projects\\VS\\UniversityProjects\\ShopMvc\\ShopMvc\\ShopMvc.csproj",
       "packagesPath": "C:\\Users\\Azatka\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Azatka\\source\\repos\\ShopMvc\\ShopMvc\\obj\\",
+      "outputPath": "D:\\Projects\\VS\\UniversityProjects\\ShopMvc\\ShopMvc\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
